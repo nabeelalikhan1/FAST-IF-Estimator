@@ -1,14 +1,10 @@
-function [fidexmult] = MB_IF_estimation(Sig, num, delta)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  output   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% fidexmult: obtained ridge index for multi-component signals
+function [fidexmult] = Proposed_IF_estimation_spec_RPGP(Sig, num,delta)
 
 for i = 1:num
-%Spec=tfr_stft_high(Sig);
+Spec=quadtfd(Sig,length(Sig)-1,1,'specx',31,'hamm');
+%Spec=quadtfd(Sig,length(Sig)/4-1,1,'mb',0.05,128);
 
-
-    Spec = quadtfd(Sig, length(Sig)/4-1, 1, 'mb',0.2,length(Sig));
-
-c = findridges(Spec,delta);
+c = findridges(Spec,delta);%(Spec,orienttfd,delta);
 %c = findridges_neww(Spec,orienttfd,delta);
 
 
@@ -26,9 +22,10 @@ c = findridges(Spec,delta);
                 %TF filtering for each sensor
                 s1 = Sig.*(s_dechirp);
                 s2=fftshift(fft(s1));
+                PPP=length(s2)/2;
                 s3=zeros(1,length(Sig));
-                s3(length(Sig)/2-L:length(Sig)/2+L)=s2(length(Sig)/2-L:length(Sig)/2+L);
-                s2(length(Sig)/2-L:length(Sig)/2+L)=0;
+                s3(PPP-L:PPP+L)=s2(PPP-L:PPP+L);
+                s2(PPP-L:PPP+L)=0;
                 extr_Sig=ifft(ifftshift(s3)).*conj(s_dechirp);
                 s2=ifft(ifftshift(s2)).*conj(s_dechirp);
                 
