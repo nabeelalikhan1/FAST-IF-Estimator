@@ -12,7 +12,7 @@ num=4;
 
 Sig=hilbert(Sig);
 tic
-[fidexmult,A] = non_tfd_IF_new_display_real(Sig,length(Sig)/(2)-1, num+10, 2,30,0.05,0.1);
+[fidexmult,A] = FAST_IF(Sig,length(Sig)/(2)-1, num+10, 2,30,0.05,0.1);
 toc
 t=0:1/SampFreq:8-1/SampFreq;
 f=(0:8/128:8-8/128);

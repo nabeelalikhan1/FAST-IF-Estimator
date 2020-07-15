@@ -21,7 +21,7 @@ IF_O(:,3)=90*t.^2/2+10;
 num=3;
 
 % HADTFD BASED
-[fidexmult,A] = non_tfd_IF_new_display(Sig,length(Sig)/(2)-1, num, 2,100,0,0);
+[fidexmult,A] = FAST_IF(Sig,length(Sig)/(2)-1, num, 2,100,0,0);
 plot(t,IF_O,'-',t,SampFreq*fidexmult,':','linewidth',3);
 axis([0 1 0 64]);
 xlabel('Time (s)');

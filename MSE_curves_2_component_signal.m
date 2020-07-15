@@ -63,7 +63,7 @@ for snr=0:2:10
                 %ADTFD+ridge tracking
                 findex= Proposed_IF_estimation(Sig, num,5);
             elseif kkkkk==3 %the new algorithm
-                [findex] = non_tfd_IF_new(Sig,length(Sig)/2-1, num, 2,100,0,0)*2*SampFreq;
+                [findex] = FAST_IF(Sig,length(Sig)/2-1, num, 2,100,0,0)*2*SampFreq;
             elseif kkkkk==4 %the new algorithm
                 [fidexmult] = MB_IF_estimation(Sig, num, delta);
                 [findex,~] = RPRG(fidexmult,15);            
