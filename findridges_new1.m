@@ -1,13 +1,7 @@
 function index = findridges_new1(Spec,Specangle,delta)
-%Ridge detection algorithm,i.e., Algorithm 1 in paper:Separation of Overlapped Non-Stationary Signals by Ridge Path Regrouping and Intrinsic Chirp Component Decomposition
-% ,IEEE Sensors journal,2017.
-% The algorithm is originally introduced in the paper: Algorithms for blind components separation and extraction from the time-frequency distribution of their mixture.
-% EURASIP Journal on Advances in Signal Processing, 2004.
+% IF estimation algorithm published in "Instantaneous frequency estimation
+% of intersecting and close multi-component signals with varying amplitudes"
 
-
-%Spec£ºTime-Frequency distribution of the signal
-%delta£ºmaximum allowable frequency variation between two consecutive points
-%index£ºThe obtained frequency indexs at each time instant
 Spec = abs(Spec);
 T=15;
 II(:,:,1)=zeros(size(Spec));
