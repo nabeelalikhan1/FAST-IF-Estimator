@@ -22,7 +22,7 @@ Sig2 = 1*exp(1i*(-1*pi*(30*t.^3))+1i*(1*pi*(90*t))); %300tªÚ’ﬂ150t
 
 Sig3 = exp(1i*(1*pi*(30*t +30*t.^3)));
 Sig4 =1*exp(1i*(2*pi*(110*t -30*t.^3)));
-Sig =1*Sig1 +0*Sig3+1*Sig2;
+Sig =1*Sig1 +0*Sig3+0.75*Sig2;
 SigO =Sig;
 IF_O(:,1)=90*t.^2/2;
 IF_O(:,2)=-90*t.^2/2+90/2;
@@ -31,7 +31,7 @@ IF_O(:,2)=-90*t.^2/2+90/2;
 
 %Sig=Sig.*([1:128 128:-1:1]);
 num=2;
-NS=500;
+NS=100;
 IF_O=2*IF_O/length(IF_O);
 % HADTFD BASED
 

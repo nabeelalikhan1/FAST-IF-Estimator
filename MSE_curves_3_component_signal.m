@@ -21,7 +21,7 @@ Sig1 = 1*exp(1i*(1*pi*(30*t.^3))+1i*(2*pi*(0*t))); %300t或者150t
 Sig2 = 1*exp(1i*(-1*pi*(30*t.^3))+1i*(1*pi*(90*t))); %300t或者150t
 
 Sig3 = exp(1i*(1*pi*(20*t +30*t.^3)));
-Sig =1*Sig1 +1*Sig3+0.5*Sig2;
+Sig =1*Sig1 +1*Sig3+1*Sig2;
 SigO =Sig;
 IF_O(:,1)=90*t.^2/2;
 IF_O(:,2)=-90*t.^2/2+90/2;
@@ -30,7 +30,7 @@ IF_O(:,3)=90*t.^2/2+10;
 
 %Sig=Sig.*([1:128 128:-1:1]);
 num=3;
-NS=25;
+NS=100;
 IF_O=2*IF_O/length(IF_O);
 % HADTFD BASED
 
@@ -56,7 +56,9 @@ for snr=0:2:10
                 %ADTFD+ridge tracking
                 findex= Proposed_IF_estimation(Sig, num,5);
             elseif kkkkk==2 %the new algorithm
+                %[findex] = FAST_IF(Sig,length(Sig)/2-1, num, 2,100,0,0)*2*SampFreq;
                 [findex] = FAST_IF(Sig,length(Sig)/2-1, num, 2,100,0,0)*2*SampFreq;
+
             elseif kkkkk==3 %the new algorithm
                 [fidexmult] = MB_IF_estimation(Sig, num, delta);
                 fidexmult(fidexmult>128)=128;
