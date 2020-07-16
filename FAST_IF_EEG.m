@@ -1,6 +1,6 @@
 
 
-function [fidexmult,TFC] = FAST_IF(Sig,win_length, num, delta,L,thr,Thr)
+function [fidexmult,TFC] = FAST_IF_EEG(Sig,win_length, num, delta,L,thr,Thr)
 % SET OF FRACTIONAL WINDOWS
 w=gausswin(win_length,1);
 l=0:length(Sig)-1;
@@ -14,7 +14,7 @@ i=0;
 window_rot=zeros(2*L+1,win_length);
 for k=-L+1:1:L-1
    i=i+1;
-   window_rot(i,:)=frft(w,0.85* k/L);%fracft(w,0.95* k/L);%0.05
+   window_rot(i,:)=frft(w,0.99* k/L);%fracft(w,0.95* k/L);%0.05
 end
 %save('window_rot','window_rot');
 %load('window_rot');
