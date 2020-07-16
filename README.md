@@ -7,3 +7,4 @@ Run "MSE_curves_3_component_signal.m" to estimate MSE curve for a 3 component si
 Run "IF_snr_sim_new_extensive_3_component.m" for MSE curves (3 component).
 Run "IF_EEG for illustration.m" of the proposed method for real-life signals.
 Run "IF_real_life_performance_comparison.m" to reproduce results of the paper related to EEG signals.
+Run "Sinusoid_FM.m" to estimate the IF of intersecting sinusoial FM signals and crossing components
