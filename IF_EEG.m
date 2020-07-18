@@ -12,7 +12,7 @@ num=4;
 
 Sig=hilbert(Sig);
 tic
-[fidexmult,A] = FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 3,64,0.05,0.1);
+[fidexmult,A] = FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 3,64,0.01,0.1);
 
 toc
 t=0:1/SampFreq:8-1/SampFreq;
