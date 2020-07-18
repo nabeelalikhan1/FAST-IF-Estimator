@@ -30,7 +30,7 @@ IF_O(:,3)=90*t.^2/2+10;
 
 %Sig=Sig.*([1:128 128:-1:1]);
 num=3;
-NS=100;
+NS=200;
 IF_O=2*IF_O/length(IF_O);
 % HADTFD BASED
 
@@ -56,7 +56,6 @@ for snr=0:2:10
                 %ADTFD+ridge tracking
                 findex= Proposed_IF_estimation(Sig, num,5);
             elseif kkkkk==2 %the new algorithm
-                %[findex] = FAST_IF(Sig,length(Sig)/2-1, num, 2,100,0,0)*2*SampFreq;
                 [findex] = FAST_IF(Sig,length(Sig)/2-1, num, 2,100,0,0)*2*SampFreq;
 
             elseif kkkkk==3 %the new algorithm
