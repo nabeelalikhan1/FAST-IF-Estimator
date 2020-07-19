@@ -40,9 +40,10 @@ for snr=0:2:10
     iiii=iiii+1;
     
     for k1=1:NS
+        
         Sig=awgn(SigO,snr,'measured');
         
-        for kkkkk=0:2
+        for kkkkk=0:4
             
             % ORIGINAL
             delta=5;
@@ -53,11 +54,22 @@ for snr=0:2:10
             elseif kkkkk==1 %SPEC+RPGP
           
                 %ADTFD+ridge tracking
-               findex= Proposed_IF_estimation(Sig, num,5);
+                findex= Proposed_IF_estimation(Sig, num,5);
             elseif kkkkk==2 %the new algorithm
                 [findex] = FAST_IF(Sig,length(Sig)/2-1, num, 2,100,0,0)*2*SampFreq;
 
-           
+            elseif kkkkk==3 %the new algorithm
+                [fidexmult] = MB_IF_estimation(Sig, num, delta);
+                fidexmult(fidexmult>128)=128;
+                fidexmult(fidexmult<1)=1;
+                [findex,~] = RPRG(fidexmult,5);            
+            
+            elseif kkkkk==4 %the new algorithm
+               [fidexmult] = Proposed_IF_estimation_spec_RPGP(Sig, num,5);
+               fidexmult(fidexmult>128)=128;
+                fidexmult(fidexmult<1)=1;
+                [findex,interset] = RPRG(fidexmult,5);           
+              
             end
             
             msee=0.1*ones(1,num);
@@ -89,7 +101,10 @@ for snr=0:2:10
             elseif kkkkk==2
                 mse_non_tfd(k1)=mean(msee);
             
-           
+            elseif kkkkk==3
+                mse_Spec_rpgp(k1)=mean(msee);
+            elseif kkkkk==4
+                mse_mb_rpgp(k1)=mean(msee);
             end
             
             
@@ -98,7 +113,9 @@ for snr=0:2:10
         
     end
     mse_viterbi(iiii)=mean(mse_adtfd_viterbi_modified)
+    mse_spec(iiii)=mean(mse_Spec_rpgp)
     mse_adtfd(iiii)=mean(mse_adtfd_ridgetracking)
+        mse_mb(iiii)=mean(mse_mb_rpgp)
 
     mse_proposed(iiii)=mean(mse_non_tfd)
 end
@@ -115,11 +132,16 @@ plot(snr, 10*(log10(mse_adtfd)),'-bh','linewidth',4);
 hold on;
 plot(snr, 10*(log10(mse_proposed)),'-.k+','linewidth',4);
 
+hold on;
+plot(snr, 10*(log10(mse_mb)),'-.y+','linewidth',4);
+
+hold on;
+plot(snr, 10*(log10(mse_spec)),'-.g+','linewidth',4);
 
 
 
 
 xlabel('Signal to Noise Ratio');
 ylabel('Mean Square Error (dB)');
-legend('Viterbi based on ADTFD','Ridge detection and tracking using ADTFD','The Proposed Algorithm');
+legend('Viterbi based on ADTFD','Ridge detection and tracking using ADTFD','The Proposed Algorithm', 'Ridge path regrouping using MBD', 'Ridge path regrouping using Spectrogram');
 % axis([min(snr) max(snr)  -50  0])

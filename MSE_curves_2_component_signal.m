@@ -31,7 +31,7 @@ IF_O(:,2)=-90*t.^2/2+90/2;
 
 %Sig=Sig.*([1:128 128:-1:1]);
 num=2;
-NS=200;
+NS=100;
 IF_O=2*IF_O/length(IF_O);
 % HADTFD BASED
 
