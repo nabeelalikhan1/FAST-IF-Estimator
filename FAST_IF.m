@@ -2,6 +2,19 @@
 
 function [fidexmult,TFC] = FAST_IF(Sig,win_length, num, delta,L,thr,Thr)
 % SET OF FRACTIONAL WINDOWS
+% Input Parameters:
+% Sig: Analytical Signal computed using Hilbert Transform
+% wind_length: Length of the analysis window
+% num: Maximum number of iterations that can be set equal to the length of number of components
+% delta: Delta F , i.e maximum possible deviation between the two consecutive sample of the signal.
+% L: 2*L+a are the number of quantization levels for the computation of fractional Fourier windows
+% thr: Maximum possible ratio between the energy of the strongest component and the weakest component. It is used to stop the algorithm when IFs of all components have been estimated.
+% Thr: Maximum possible ratio between the amplitude of the strongest TF point of a given component and the weakest TF point. It is used to find boundary of the IF curve
+%Output: 
+%fidexmult: IFs of the signal component
+%TFC: 3D representation of IF curve in time-frequency-chirp domain
+
+
 w=gausswin(win_length,1);
 l=0:length(Sig)-1;
 
