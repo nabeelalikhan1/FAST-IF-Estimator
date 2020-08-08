@@ -30,7 +30,6 @@ end
 %save('window_rot','window_rot');
 %load('window_rot');
 
-TFC=zeros(length(Sig),length(Sig),2*L+1);
 Sig_extended=[zeros(1,floor(win_length/2)) Sig zeros(1,floor(win_length/2))];
 
 w_signal=zeros(1,length(Sig));
@@ -57,7 +56,6 @@ for iii=1:num
     IF=zeros(1,length(Sig))-1;
     IF(t_start)=freq_start;
     
-    TFC(t_start,freq_start,frac_wind_index_start)=iii;
     
     clear v;
     
@@ -112,7 +110,6 @@ for iii=1:num
                 break;
             end
             %v_old=v_m;
-            TFC(t_index,f0,frac_wind_index)=iii;
             
             IF(t_index)=f0;
         end
