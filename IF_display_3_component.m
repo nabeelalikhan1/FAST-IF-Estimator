@@ -6,8 +6,8 @@ addpath('D:\tfsa_5-5\windows\win64_bin');
 t = 0:1/SampFreq:1-1/SampFreq;
 
 
-Sig1 = 1*exp(1i*(1*pi*(30*t.^3))+1i*(2*pi*(0*t))); %300t或者150t
-Sig2 = 1*exp(1i*(-1*pi*(30*t.^3))+1i*(1*pi*(90*t))); %300t或者150t
+Sig1 = 1*exp(1i*(1*pi*(30*t.^3))+1i*(2*pi*(0*t))); %300t禄貌脮脽150t
+Sig2 = 1*exp(1i*(-1*pi*(30*t.^3))+1i*(1*pi*(90*t))); %300t禄貌脮脽150t
 
 Sig3 = exp(1i*(1*pi*(20*t +30*t.^3)));
 Sig =1*Sig1 +1*Sig3+1*Sig2;
@@ -21,7 +21,7 @@ IF_O(:,3)=90*t.^2/2+10;
 num=3;
 
 % HADTFD BASED
-[fidexmult,A] = FAST_IF(Sig,length(Sig)/(2)-1, num, 2,100,0,0);
+[fidexmult] = FAST_IF(Sig,length(Sig)/(2)-1, num, 2,100,0,0);
 plot(t,IF_O,'-',t,SampFreq*fidexmult,':','linewidth',3);
 axis([0 1 0 64]);
 xlabel('Time (s)');
