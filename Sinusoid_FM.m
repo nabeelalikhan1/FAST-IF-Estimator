@@ -39,7 +39,7 @@ num=3;
 %[I,O]=HTFD_neww(Sig,3,5,30);
 
 
-[findex1,A]= FAST_IF(Sig,25+0*26, num, 2,30,0.2,0.4);
+[findex1]= FAST_IF(Sig,25+0*26, num, 2,30,0.2,0.4);
 figure;plot(findex1.')
 
 
