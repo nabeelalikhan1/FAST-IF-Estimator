@@ -1,6 +1,6 @@
 
 
-function [fidexmult,TFC] = FAST_IF(Sig,win_length, num, delta,L,thr,Thr)
+function [fidexmult] = FAST_IF(Sig,win_length, num, delta,L,thr,Thr)
 % SET OF FRACTIONAL WINDOWS
 % Input Parameters:
 % Sig: Analytical Signal computed using Hilbert Transform
@@ -14,7 +14,7 @@ function [fidexmult,TFC] = FAST_IF(Sig,win_length, num, delta,L,thr,Thr)
 %fidexmult: IFs of the signal component
 %TFC: 3D representation of IF curve in time-frequency-chirp domain
 w=gausswin(win_length,1);
-l=0:length(Sig)-1;
+l=0:win_length-1;
 
 for iii=1:length(Sig)
     WW(iii,:)=exp(-1i*(iii)*2*pi*l/length(Sig));
@@ -32,7 +32,6 @@ end
 
 Sig_extended=[zeros(1,floor(win_length/2)) Sig zeros(1,floor(win_length/2))];
 
-w_signal=zeros(1,length(Sig));
 v=zeros(1,2*L+1);
 index=v;
 
