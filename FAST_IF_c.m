@@ -30,13 +30,14 @@ end
 %save('window_rot','window_rot');
 %load('window_rot');
 
-Sig_extended=[zeros(1,floor(win_length/2)) Sig zeros(1,floor(win_length/2))];
 
 %w_signal=zeros(1,length(Sig));
 v=zeros(1,2*L+1);
 index=v;
 
 for iii=1:num
+    Sig_extended=[zeros(1,floor(win_length/2)) Sig zeros(1,floor(win_length/2))];
+
     Siga=filter(ones(1,win_length),1,abs(Sig));
     [~,t_start]=max(Siga(floor(win_length/2)+1:end-floor(win_length/2)));
     t_start=t_start(1)+floor(win_length/2);
