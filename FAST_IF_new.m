@@ -12,7 +12,6 @@ function [fidexmult] = FAST_IF_new(Sig,win_length, num, delta,L,thr,Thr)
 % Thr: Maximum possible ratio between the amplitude of the strongest TF point of a given component and the weakest TF point. It is used to find boundary of the IF curve
 %Output: 
 %fidexmult: IFs of the signal component
-%TFC: 3D representation of IF curve in time-frequency-chirp domain
 w=gausswin(win_length,1);
 l=0:win_length-1;
 
@@ -30,13 +29,14 @@ end
 %save('window_rot','window_rot');
 %load('window_rot');
 
-Sig_extended=[zeros(1,floor(win_length/2)) Sig zeros(1,floor(win_length/2))];
 
 %w_signal=zeros(1,length(Sig));
 v=zeros(1,2*L+1);
 index=v;
 
 for iii=1:num
+Sig_extended=[zeros(1,floor(win_length/2)) Sig zeros(1,floor(win_length/2))];
+
     Siga=filter(ones(1,win_length),1,abs(Sig));
     [~,t_start]=max(Siga(floor(win_length/2)+1:end-floor(win_length/2)));
     t_start=t_start(1)+floor(win_length/2);
