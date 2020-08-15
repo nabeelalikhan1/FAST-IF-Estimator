@@ -4,8 +4,8 @@ close all
 SampFreq = 256/2;
 addpath('D:\tfsa_5-5\windows\win64_bin');
 t = 0:1/SampFreq:1-1/SampFreq;
-%Sig1 = 1*exp(1i*(2*pi*(50*t.^1))+1i*(2*pi*(0*t))); %300t或者150t
-%Sig2 = 1*exp(1i*(2*pi*(50*t.^2))+1i*(2*pi*(10*t))); %300t或者150t
+%Sig1 = 1*exp(1i*(2*pi*(50*t.^1))+1i*(2*pi*(0*t))); %300t禄貌脮脽150t
+%Sig2 = 1*exp(1i*(2*pi*(50*t.^2))+1i*(2*pi*(10*t))); %300t禄貌脮脽150t
 
 %Sig3 = exp(1i*(1*pi*(10*t +35*t.^3)));
 %Sig4 =1*exp(1i*(1*pi*(110*t -35*t.^3)));
@@ -17,8 +17,8 @@ t = 0:1/SampFreq:1-1/SampFreq;
 %IF_O(:,3)=50;
 
 
-Sig1 = 1*exp(1i*(1*pi*(30*t.^3))+1i*(2*pi*(0*t))); %300t或者150t
-Sig2 = 1*exp(1i*(-1*pi*(30*t.^3))+1i*(1*pi*(90*t))); %300t或者150t
+Sig1 = 1*exp(1i*(1*pi*(30*t.^3))+1i*(2*pi*(0*t))); %300t禄貌脮脽150t
+Sig2 = 1*exp(1i*(-1*pi*(30*t.^3))+1i*(1*pi*(90*t))); %300t禄貌脮脽150t
 
 Sig3 = exp(1i*(1*pi*(20*t +30*t.^3)));
 Sig =1*Sig1 +1*Sig3+1*Sig2;
@@ -56,7 +56,7 @@ for snr=0:2:10
                 %ADTFD+ridge tracking
                 findex= Proposed_IF_estimation(Sig, num,5);
             elseif kkkkk==2 %the new algorithm
-                [findex] = FAST_IF(Sig,length(Sig)/2-1, num, 2,100,0,0)*2*SampFreq;
+                [findex] = FAST_IF(Sig,length(Sig)/2-1, num, 3,100,0,0)*2*SampFreq;
 
             elseif kkkkk==3 %the new algorithm
                 [fidexmult] = MB_IF_estimation(Sig, num, delta);
