@@ -16,11 +16,6 @@ IF_O(:,1)=90*t.^2/2;
 %IF_O(:,3)=90*t.^2/2+15;
 IF_O(:,2)=-90*t.^2/2+90/2;
 
-Sig1 = 1*exp(1i*(1*pi*(30*t.^3))+1i*(2*pi*(0*t))); %300t或者150t
-Sig2 = 1*exp(1i*(-1*pi*(30*t.^3))+1i*(1*pi*(90*t))); %300t或者150t
-
-Sig3 = exp(1i*(1*pi*(20*t +30*t.^3)));
-Sig4 =1*exp(1i*(2*pi*(110*t -30*t.^3)));
 %Sig =1*Sig1 +1*Sig3+1*Sig2;
 %Sig=Sig.*([1:128 128:-1:1]);
 num=3;
@@ -39,7 +34,7 @@ num=3;
 %[I,O]=HTFD_neww(Sig,3,5,30);
 
 
-[findex1]= FAST_IF(Sig,25+0*26, num, 2,30,0.2,0.4);
+[findex1]= FAST_IF(Sig,25+0*26, num, 3,30,0.2,0.4);
 figure;plot(findex1.')
 
 
