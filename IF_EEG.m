@@ -9,10 +9,10 @@ n=1:128;
 addpath('D:\tfsa_5-5\windows\win64_bin');
 %Sig=awgn(Sig,10,'measured');
 num=4;
-
+Thr=0.1;
 Sig=hilbert(Sig);
 tic
-[fidexmult,A] = FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 3,64,0.01,0.1);
+[fidexmult,A] = FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 2,100,0.05,0.1);
 
 toc
 t=0:1/SampFreq:8-1/SampFreq;
@@ -49,13 +49,13 @@ IF_O=fidexmult;
 IF_O(4,:)=0.01+3*0.000007*n.^2;
 IF_O(5,:)=0.48-3*0.000009*n.^2;
 
- Sig=Sig+1*0.04*cos(2*pi*(0.01*n+0.000007*n.^3))+1*0.1*cos(2*pi*(0.48*n-0.000009*n.^3)); 
+ Sig=Sig+1*0.04*cos(2*pi*(0.01*n+0.000007*n.^3))+1*0.08*cos(2*pi*(0.48*n-0.000009*n.^3)); 
 %Sig=awgn(Sig,15,'measured');
 num=4;
 
 Sig=hilbert(Sig);
 tic
-[fidexmult,A] = FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 3,64,0.01,0.1);
+[fidexmult,A] = FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 3,100,0.05,0);
 toc
 t=0:1/SampFreq:8-1/SampFreq;
 TF=zeros(length(Sig),length(Sig));

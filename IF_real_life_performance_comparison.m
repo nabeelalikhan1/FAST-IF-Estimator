@@ -13,7 +13,7 @@ num=3;
 
 Sig=hilbert(Sig);
 %[fidexmult,A] = non_tfd_IF_new_display_real(Sig,length(Sig)/(2)-1, 3, 2,30,0,0);
-[fidexmult,A] = FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 3,64,0.05,0.1);
+[fidexmult,A] = FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 2,100,0.05,0.1);
 figure;
 plot(t(1:4:end),SampFreq*fidexmult(:,1:4:end).','-','linewidth',2);
 axis([0 8 0 8]);
@@ -58,13 +58,13 @@ IF_O(4,:)=0.01+3*0.000007*n.^2;
 IF_O(5,:)=0.48-3*0.000009*n.^2;
 
 n=1:128;
- Sig=Sig+1*0.04*cos(2*pi*(0.01*n+0.000007*n.^3))+0.1*cos(2*pi*(0.48*n-0.000009*n.^3)); 
+ Sig=Sig+1*0.04*cos(2*pi*(0.01*n+0.000007*n.^3))+0.08*cos(2*pi*(0.48*n-0.000009*n.^3)); 
 %Sig=awgn(Sig,15,'measured');
 num=5;
 
 Sig=hilbert(Sig);
 
-[fidexmult,A] =FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 3,64,0.01,0.1);
+[fidexmult,A] =FAST_IF_EEG(Sig,length(Sig)/(2)-1, num+10, 3,100,0.05,0);
 
 %[fidexmult,A] = FAST_IF(Sig,length(Sig)/(2)-1, num+10, 3,32,0.05,0.1);
 figure;
